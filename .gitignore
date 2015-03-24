@@ -1,0 +1,6 @@
+.omakedb*
+*.omc
+*~
+*.cm*
+*.a
+*.exe

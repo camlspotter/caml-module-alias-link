@@ -1,0 +1,22 @@
+FILES[] =
+   my_x
+   my_y
+   my_z
+   my
+   app
+
+# Actually, this is only required for the compilation of my.ml.
+OCAMLFLAGS += -no-alias-deps
+
+my.cmxa: my.cmx my_x.cmx my_y.cmx my_z.cmx
+    ocamlopt -a -o $@ my.cmx my_x.cmx my_y.cmx my_z.cmx
+
+test$(EXE): my.cmxa app.cmx
+    ocamlopt -o test$(EXE) my.cmxa app.cmx
+
+.DEFAULT: test$(EXE)
+
+.PHONY: clean
+
+clean:
+    rm -f *.cm* *.o *.a test$(EXE)
