@@ -3,6 +3,7 @@
 ## How to see it is working
 
 ```shell
+$ cd simple
 $ omake
 $ strings test | grep happy
 ```
