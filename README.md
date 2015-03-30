@@ -11,7 +11,7 @@ See `happy_x` is linked in the executable but not `happy_y`.
 
 ## Points you have to know.
 
-`module M = My_m` in a compilation unit `my.ml` compiled with `-no-alias-deps` does not create a real dependency over `My_m`, if `My_m` is another compilation unit `my_m.ml`.  The code does not make the linking of `My` triggers the linking of `My_m`.  Actually, the code compiles even without the compilation of `My_m`. (The compiler complains a warning 49, though.)
+`module M = My_m` in a compilation unit `my.ml` compiled with `-no-alias-deps` does not create a real dependency over `My_m`, if `My_m` is another compilation unit `my_m.ml`.  The code does not make linking of `My` triggers linking of `My_m`.  Actually, the code (`my.ml`) compiles even without the compilation of `My_m`. (The compiler complains a warning 49, though.)
 
 > Problem: `ocamldep` of 4.02.1 does not know `-no-alias-deps` therefore `ocamldep my.ml` prints a false dependency over `my_m.ml`.
 
