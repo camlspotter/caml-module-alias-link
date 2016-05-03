@@ -1,5 +1,5 @@
 # Actually, this is only required for the compilation of my.ml.
-OCAMLFLAGS += -no-alias-deps -w -49
+OCAMLFLAGS += -no-alias-deps -w -49 -annot -bin-annot
 
 # Better dependency analysis of ocamldep
 OCAMLDEPFLAGS += -as-map
@@ -8,13 +8,13 @@ my.cmxa: my.cmx my_x.cmx my_y.cmx my_z.cmx
     ocamlopt -a -o $@ my.cmx my_x.cmx my_y.cmx my_z.cmx
 
 my_x.cmx my_x.cmi: x.ml my.cmi
-    ocamlopt -open My -c -o $@ x.ml
+    ocamlopt -open My $(OCAMLFLAGS) -c -o $@ x.ml
 
 my_y.cmx my_y.cmi: y.ml my.cmi
-    ocamlopt -open My -c -o $@ y.ml
+    ocamlopt -open My $(OCAMLFLAGS) -c -o $@ y.ml
 
 my_z.cmx my_z.cmi: z.ml my.cmi my_x.cmi
-    ocamlopt -open My -c -o $@ z.ml
+    ocamlopt -open My $(OCAMLFLAGS) -c -o $@ z.ml
 
 app.cmx app.cmi: app.ml my.cmi my.cmxa
     ocamlopt -c -o $@ app.ml
